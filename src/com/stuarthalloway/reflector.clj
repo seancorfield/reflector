@@ -67,7 +67,7 @@ and class file representation are visible on the classpath"
   (-reflect
    [n]
    (let [resources (whence-ns? n)
-         sum #(some-> % pom/guess-pom xml/parse pom/summary)
+         sum #(some-> % pom/pom-contents xml/parse pom/summary)
          pom (or (some-> resources :clj sum)
                  (some-> resources :class sum))]
      (with-meta
